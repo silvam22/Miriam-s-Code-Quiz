@@ -1,15 +1,16 @@
-// Declaring variables
+// Assigning code
 var startBtn = document.querySelector(".start")
 var openingContainer = document.querySelector(".opening_container")
 var quizContainer = document.querySelector(".quiz_container")
 var highscoresContainer = document.querySelector(".high_scores_container")
-
+// Displaying player and their scores
 var timer = 0
 var currentQuestion = 0
 var highscores = [{
     name: "Player one",
     score: "5",
 }]
+// Questions
 var questions = [
     {
         question: "Do all html tags come in a pair?",
@@ -32,14 +33,14 @@ var questions = [
         correct: "A linked list refers to a linear data structure in which the elements are not necessarily stored in a contiguous manner."
     }
 ]
-
+// Event listener to start timer
 startBtn.addEventListener("click", function () {
     openingContainer.style.display = "none"
     quizContainer.style.display = "block"
     startTimer()
     renderQuiz(questions[0])
 })
-
+// function quiz
 function renderQuiz(quiz) {
     console.log(quiz)
     let html = `
@@ -54,7 +55,7 @@ function renderQuiz(quiz) {
     quizContainer.innerHTML = html
     currentQuestion++
 }
-
+// function to start timer
 function startTimer() {
     timer = 60
     var timerElement = document.querySelector(".timer")
@@ -69,9 +70,8 @@ function startTimer() {
 
         timerElement.innerHTML = timer
     }, 1000);
-
-
 }
+// function to reduce time if answered wrong
 function reducedTime() {
     timer = timer - 5
 }
@@ -92,7 +92,8 @@ function nextQuiz(event) {
         quizContainer.innerHTML = formHtml
     }
 }
-function loadscores (){
+// function to load the scores
+function loadscores() {
     for (let i = 0; i < highscores.length; i++) {
         var tr = document.createElement("tr")
         var html = `
@@ -107,8 +108,8 @@ document.querySelector(".high_scores").addEventListener("click", function () {
     highscoresContainer.style.display = "block"
     openingContainer.style.display = "none"
     quizContainer.style.display = "none"
-timer=0
-loadscores()
+    timer = 0
+    loadscores()
 })
 document.querySelector(".go_back").addEventListener("click", function () {
     highscoresContainer.style.display = "none"
@@ -117,5 +118,5 @@ document.querySelector(".go_back").addEventListener("click", function () {
 })
 document.querySelector(".clear_scores").addEventListener("click", function () {
     highscores.length = 0
-    document.querySelector("tbody").innerHTML= ""
+    document.querySelector("tbody").innerHTML = ""
 })
